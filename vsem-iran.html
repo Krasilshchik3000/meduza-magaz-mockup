@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Никита Смагин. «Всем Иран» — Магаз — Meduza</title>
+<meta name="description" content="Книга Никиты Смагина «Всем Иран» — обновлённое издание о современном Иране. Купить в Магазе «Медузы»." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Inter — ближайшая замена Proxima Nova; Source Serif 4 — ближайшая к PF Regal -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg: #000000;
+    --card-bg: #ffffff;
+    --ink: #000000;
+    --ink-2: #2a2a2a;
+    --muted: #6b6b6b;
+    --line: #e5e5e5;
+    --line-dark: #d5d5d5;
+    --rubric: #b88b59;      /* caramel — родная меduzовская рубрика */
+    --lime: #c4ff3c;        /* фирменный акцент */
+    --lime-dark: #a8dd22;
+    --soft: #f0f0f0;
+    --sans: 'Inter', 'Proxima Nova', Arial, 'Helvetica Neue', sans-serif;
+    --serif: 'Source Serif 4', 'PF Regal', Georgia, serif;
+    --content-max: 1335px;
+    --text-max: 680px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--serif);
+    color: var(--ink);
+    background: var(--page-bg);
+    -webkit-font-smoothing: antialiased;
+    font-size: 19px;
+    line-height: 28px;
+  }
+  a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--rubric); }
+
+  /* ===== Top strip (black) — logo + nav on dark ===== */
+  .top-strip {
+    background: #000;
+    color: #fff;
+    font-family: var(--sans);
+  }
+  .top-strip-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 18px 40px 14px;
+    display: flex; align-items: center; gap: 36px;
+  }
+  .logo {
+    display: inline-flex; align-items: center;
+    flex-shrink: 0;
+  }
+  .logo svg { height: 28px; width: auto; fill: #fff; display: block; }
+  .nav { display: flex; gap: 22px; flex: 1; }
+  .nav a {
+    color: #fff; text-decoration: none;
+    font-size: 14px; font-weight: 600; letter-spacing: 0;
+  }
+  .nav a.active { color: var(--lime); }
+  .nav a:hover { color: var(--lime); }
+  .top-right { display: flex; gap: 20px; align-items: center; font-size: 14px; font-weight: 600; }
+  .top-right a { color: #fff; text-decoration: none; }
+  .top-right .cart {
+    color: #000; background: var(--lime); padding: 7px 14px;
+    text-decoration: none; font-size: 13px; font-weight: 700;
+  }
+  .top-right .cart:hover { background: var(--lime-dark); }
+
+  /* ===== Content white card on black ===== */
+  .card-wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 0;
+  }
+
+  /* ===== Article head ===== */
+  .head {
+    padding: 48px 40px 0;
+    max-width: calc(var(--text-max) + 80px);
+    margin: 0 auto;
+  }
+  .rubric {
+    font-family: var(--sans);
+    font-size: 14px; font-weight: 600;
+    color: var(--rubric);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 18px;
+  }
+  .rubric:hover { color: var(--rubric); opacity: .8; }
+  h1.title {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 46px;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 30px;
+    color: var(--ink-2);
+    margin: 0 0 28px;
+  }
+  .meta-line {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding: 14px 0 18px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .meta-line strong { color: var(--ink); font-weight: 600; }
+  .meta-line span.sep { color: var(--line-dark); }
+
+  /* ===== PRODUCT HERO ===== */
+  .product {
+    padding: 40px 40px 56px;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 440px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  /* Book cover with flipbook */
+  .book-stage {
+    position: sticky; top: 24px;
+  }
+  .flipbook {
+    position: relative;
+    aspect-ratio: 3/4;
+    max-width: 380px;
+    margin: 0 auto;
+    perspective: 1800px;
+    cursor: pointer;
+  }
+  .flipbook .page {
+    position: absolute; inset: 0;
+    transform-origin: left center;
+    transition: transform 1s cubic-bezier(.22,.8,.28,1);
+    backface-visibility: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,.22), 0 4px 10px rgba(0,0,0,.08);
+  }
+  .flipbook .page.cover {
+    background: linear-gradient(155deg, #0a2340 0%, #15416f 55%, #2767a8 100%);
+    color: #fff;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 30px 26px;
+    z-index: 3;
+  }
+  .flipbook .page.cover::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 25% 15%, rgba(255,210,90,.22), transparent 55%);
+    pointer-events: none;
+  }
+  .flipbook .page.cover .label {
+    font-family: var(--sans); font-weight: 700; font-size: 12px; letter-spacing: .14em; opacity: .75;
+  }
+  .flipbook .page.cover .b-title {
+    font-family: var(--sans); font-weight: 800; font-size: 48px; line-height: .95; letter-spacing: -0.02em;
+  }
+  .flipbook .page.cover .b-sub {
+    font-family: var(--serif); font-style: italic; font-size: 16px; opacity: .9; margin-top: 10px;
+  }
+  .flipbook .page.cover .publisher {
+    font-family: var(--sans); font-size: 11px; letter-spacing: .2em; opacity: .6;
+  }
+  .flipbook .page.inner {
+    background: #fbf7ec;
+    padding: 34px 30px;
+    font-family: var(--serif); font-size: 14px; line-height: 1.55; color: #2a2a2a;
+    z-index: 2;
+  }
+  .flipbook .page.inner p { margin: 0 0 10px; }
+  .flipbook.flipped .page.cover { transform: rotateY(-162deg); box-shadow: -10px 15px 40px rgba(0,0,0,.2); }
+  .flip-hint {
+    margin-top: 14px;
+    font-family: var(--sans); font-size: 12px; color: var(--muted); text-align: center;
+  }
+  .flip-hint .pg-dots {
+    display: inline-flex; gap: 5px; margin-left: 10px; vertical-align: middle;
+  }
+  .flip-hint .pg-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--line); display: inline-block; }
+  .flip-hint .pg-dots span.on { background: var(--ink); }
+
+  /* ----- Product info column ----- */
+  .product-info { max-width: 420px; }
+  .product-info .p-author {
+    font-family: var(--sans); font-size: 14px; font-weight: 600;
+    color: var(--rubric); margin: 0 0 10px;
+    text-transform: none;
+  }
+  .product-info .p-author a { color: var(--rubric); text-decoration: none; }
+  .product-info .p-author a:hover { opacity: .75; }
+  .product-info h2.p-title {
+    font-family: var(--sans);
+    font-weight: 700; font-size: 34px; line-height: 38px; letter-spacing: -0.01em;
+    margin: 0 0 10px;
+  }
+  .product-info .p-dek {
+    font-family: var(--serif); font-size: 17px; line-height: 25px;
+    color: var(--muted); margin: 0 0 28px;
+  }
+
+  /* ----- Amazon-style inline format tabs ----- */
+  .formats {
+    display: flex;
+    gap: 0;
+    margin: 0 0 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .formats .fmt {
+    padding: 0 0 12px;
+    margin-right: 28px;
+    cursor: pointer;
+    background: transparent;
+    font-family: var(--sans);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .formats .fmt:last-child { margin-right: 0; }
+  .formats .fmt .f-name {
+    font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 2px;
+    transition: color .15s;
+  }
+  .formats .fmt .f-price {
+    font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: 0;
+    transition: color .15s;
+  }
+  .formats .fmt:hover .f-name { color: var(--ink); }
+  .formats .fmt.active {
+    border-bottom-color: var(--ink);
+  }
+  .formats .fmt.active .f-name { color: var(--ink); font-weight: 700; }
+  .formats .fmt.active .f-price { color: var(--ink); }
+
+  /* ----- Price + buy ----- */
+  .price-big {
+    font-family: var(--sans); font-weight: 800; font-size: 38px;
+    letter-spacing: -0.02em; line-height: 1; margin: 0 0 22px;
+  }
+  .buy-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .buy-row .btn { flex: 1; min-width: 160px; }
+  .btn {
+    font-family: var(--sans); font-weight: 700; font-size: 14px;
+    padding: 13px 20px; cursor: pointer; text-decoration: none; text-align: center;
+    display: inline-block; transition: all .15s ease;
+    border: 1px solid var(--ink); background: #fff; color: var(--ink);
+  }
+  .btn:hover { background: var(--ink); color: #fff; }
+  .btn-primary {
+    background: var(--lime); border-color: var(--lime); color: var(--ink);
+  }
+  .btn-primary:hover { background: var(--lime-dark); border-color: var(--lime-dark); color: var(--ink); }
+  .btn-sm { padding: 10px 16px; font-size: 13px; }
+
+  .delivery-note {
+    font-family: var(--sans); font-size: 12px; color: var(--muted);
+    margin: 0 0 20px; line-height: 1.5;
+  }
+  .delivery-note strong { color: var(--ink); font-weight: 600; }
+
+  /* ===== Body text (article-style) ===== */
+  .body {
+    max-width: var(--text-max);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .body p {
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 0 22px;
+    color: var(--ink);
+  }
+  /* Section within article body (the "card" blocks) — now not cards, just section dividers */
+  .section-head {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--rubric);
+    letter-spacing: 0.02em;
+    margin: 40px 0 10px;
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+  }
+  .section-h {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+  }
+  .pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 32px;
+    border-left: 3px solid var(--ink);
+    padding: 2px 0 2px 22px;
+    margin: 30px 0;
+    color: var(--ink-2);
+  }
+
+  /* ===== Related Meduza materials ===== */
+  .related {
+    max-width: calc(var(--text-max) + 80px);
+    margin: 60px auto 0;
+    padding: 0 40px;
+  }
+  .related-head {
+    font-family: var(--sans);
+    font-size: 13px; font-weight: 600;
+    color: var(--rubric);
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+    margin-bottom: 8px;
+  }
+  .related-title {
+    font-family: var(--sans);
+    font-weight: 700; font-size: 22px; line-height: 28px;
+    margin: 0 0 22px;
+  }
+  .mlist { display: grid; gap: 0; }
+  .mitem {
+    display: grid; grid-template-columns: 120px 1fr; gap: 20px;
+    padding: 20px 0; border-top: 1px solid var(--line); text-decoration: none;
+  }
+  .mitem:first-child { border-top: 0; padding-top: 0; }
+  .mitem:hover h4 { color: var(--rubric); }
+  .mitem .thumb {
+    aspect-ratio: 4/3; background-size: cover; background-position: center;
+  }
+  .mitem .m-kicker {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    color: var(--rubric); margin-bottom: 6px;
+  }
+  .mitem h4 {
+    font-family: var(--sans); font-weight: 700; font-size: 17px; line-height: 1.3;
+    margin: 0 0 6px; color: var(--ink);
+  }
+  .mitem .meta { font-family: var(--sans); font-size: 12px; color: var(--muted); }
+
+  /* ===== Buy block #2 (compact, inside white card) ===== */
+  .buy-again {
+    max-width: calc(var(--text-max) + 80px);
+    margin: 56px auto 0;
+    padding: 32px 40px;
+    background: var(--ink);
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 30px;
+    align-items: center;
+  }
+  .buy-again h3 {
+    font-family: var(--sans); font-weight: 700; font-size: 22px; margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .buy-again p {
+    font-family: var(--sans); font-size: 14px; color: #aaa; margin: 0;
+  }
+  .buy-again .btn { border-color: #fff; color: #fff; background: transparent; }
+  .buy-again .btn:hover { background: #fff; color: var(--ink); }
+  .buy-again .btn-primary { background: var(--lime); border-color: var(--lime); color: var(--ink); }
+  .buy-again .btn-primary:hover { background: var(--lime-dark); border-color: var(--lime-dark); color: var(--ink); }
+  .buy-again .btn-row { display: flex; gap: 10px; }
+
+  /* ===== Bundles ===== */
+  .section {
+    max-width: var(--content-max);
+    margin: 60px auto 0;
+    padding: 0 40px;
+  }
+  .section-title-row {
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+    margin-bottom: 26px;
+    max-width: calc(var(--text-max) + 80px);
+    margin-left: auto; margin-right: auto;
+  }
+  .section-title-row .sk {
+    font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--rubric); margin-bottom: 6px;
+  }
+  .section-title-row h2 {
+    font-family: var(--sans); font-weight: 700; font-size: 28px; line-height: 32px;
+    margin: 0 0 4px; letter-spacing: -0.01em;
+  }
+  .section-title-row .sub {
+    font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 17px; margin: 0;
+  }
+
+  .bundles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .bundle {
+    border: 1px solid var(--line);
+    padding: 22px;
+    display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .bundle .covers {
+    display: flex; gap: 6px; margin-bottom: 18px; min-height: 130px;
+  }
+  .bundle .mini-cover {
+    flex: 1; aspect-ratio: 3/4;
+    box-shadow: 0 3px 10px rgba(0,0,0,.12);
+    display: flex; align-items: flex-end; padding: 6px;
+    color: #fff; font-family: var(--sans); font-weight: 700; font-size: 9px; line-height: 1.1;
+  }
+  .bundle h3 {
+    font-family: var(--sans); font-weight: 700; font-size: 17px; margin: 0 0 6px;
+  }
+  .bundle p { font-family: var(--sans); font-size: 13px; color: var(--muted); margin: 0 0 16px; flex: 1; line-height: 1.45; }
+  .bundle .bprice {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px;
+  }
+  .bundle .bprice .new { font-family: var(--sans); font-weight: 800; font-size: 22px; }
+  .bundle .bprice .old { font-family: var(--sans); font-size: 14px; color: var(--muted); text-decoration: line-through; }
+  .bundle .bprice .save {
+    background: var(--lime); font-family: var(--sans); font-weight: 700; font-size: 11px;
+    padding: 2px 7px; color: var(--ink);
+  }
+
+  /* ===== Other books ===== */
+  .books-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .book-card { text-decoration: none; color: var(--ink); display: block; }
+  .book-card .bc-cover {
+    aspect-ratio: 3/4; margin-bottom: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.14);
+    display: flex; align-items: flex-end; padding: 14px;
+    color: #fff; font-family: var(--sans); font-weight: 800; font-size: 14px; line-height: 1.05;
+    transition: transform .2s ease;
+  }
+  .book-card:hover .bc-cover { transform: translateY(-4px); }
+  .book-card h4 { font-family: var(--sans); font-weight: 700; font-size: 15px; margin: 0 0 2px; line-height: 1.3; }
+  .book-card .bc-author { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+  .book-card .bc-price { font-family: var(--sans); font-weight: 700; font-size: 15px; }
+
+  /* ===== Imprint (publication data) ===== */
+  .imprint {
+    max-width: calc(var(--text-max) + 80px);
+    margin: 80px auto 0;
+    padding: 32px 40px 0;
+    border-top: 1px solid var(--line);
+  }
+  .imprint-head {
+    font-family: var(--sans);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+  .imprint-dl {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 12px 24px;
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+  .imprint-dl dt {
+    color: var(--muted); font-weight: 400;
+  }
+  .imprint-dl dd {
+    margin: 0; color: var(--ink); font-weight: 500;
+  }
+
+  /* Bottom padding inside white card */
+  .bottom-space { height: 80px; }
+
+  /* ===== Footer on black ===== */
+  footer {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 32px 40px;
+    font-family: var(--sans); font-size: 13px; color: #aaa;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  footer a { color: #aaa; text-decoration: none; }
+  footer a:hover { color: var(--lime); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 960px) {
+    .product { grid-template-columns: 1fr; gap: 40px; padding: 32px 20px 48px; }
+    .book-stage { position: static; }
+    .head { padding: 32px 20px 0; }
+    h1.title { font-size: 32px; line-height: 36px; }
+    .body { padding: 0 20px; }
+    .related { padding: 0 20px; }
+    .section { padding: 0 20px; }
+    .bundles { grid-template-columns: 1fr; }
+    .books-grid { grid-template-columns: repeat(2, 1fr); }
+    .buy-again { grid-template-columns: 1fr; padding: 24px 20px; }
+    .mitem { grid-template-columns: 90px 1fr; gap: 14px; }
+    .nav { display: none; }
+    .top-strip-inner { padding: 14px 20px; }
+    .formats { grid-template-columns: 1fr; }
+    .formats .fmt { border-right: 0; border-bottom: 1px solid var(--line); }
+    .formats .fmt:last-child { border-bottom: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP STRIP (BLACK) ============ -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <a href="#" class="logo" aria-label="Meduza">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 544 115" aria-hidden="true">
+        <path d="M59.1008614,49.65632 L59.1008614,106.01472 L84.9480411,114.24 L84.9480411,49.65632 L101.574882,49.65632 L101.574882,106.01472 L127.270909,114.24 L144.048902,91.392 L127.422062,91.392 L127.422062,35.7952 L101.726035,26.80832 L84.9480411,46.60992 L84.9480411,35.7952 L59.2520145,26.80832 L42.4740206,46.60992 L42.4740206,35.7952 L16.7779939,26.80832 L0,49.65632 L16.6268408,49.65632 L16.6268408,106.01472 L42.4740206,114.24 L42.4740206,49.65632 L59.1008614,49.65632 L59.1008614,49.65632 Z M336.61795,91.392 L336.61795,35.0336 L310.770769,26.80832 L310.770769,105.25312 L336.466796,114.24 L353.24479,94.4384 L353.24479,105.25312 L378.940817,114.24 L395.71881,91.392 L379.091969,91.392 L379.091969,35.0336 L353.24479,26.80832 L353.24479,91.392 L336.61795,91.392 L336.61795,91.392 Z M527.373159,38.08 L502.130592,26.80832 L472.202278,41.1264 L502.130592,52.39808 L461.016949,72.352 L461.016949,104.94848 L486.86413,114.24 L502.130592,94.28608 L502.130592,105.25312 L527.977771,114.24 L544,91.23968 L527.373159,91.23968 L527.373159,38.08 L527.373159,38.08 Z M177.453737,114.24 L207.079744,102.35904 L177.453737,91.23968 L177.453737,75.24608 L216.300083,56.3584 L194.231731,26.80832 L151.606557,47.37152 L151.606557,103.12064 L177.453737,114.24 L177.453737,114.24 Z M455.424284,89.56416 L423.984441,79.968 L453.459295,42.19264 L416.577937,26.80832 L397.230341,51.48416 L428.821339,61.23264 L398.741873,98.85568 L436.076687,114.24 L455.424284,89.56416 L455.424284,89.56416 Z M486.86413,91.392 L486.86413,68.84864 L502.130592,61.53728 L502.130592,91.392 L486.86413,91.392 L486.86413,91.392 Z M177.453737,41.58336 L190.452904,59.55712 L177.453737,65.80224 L177.453737,41.58336 L177.453737,41.58336 Z M222.95082,103.12064 L248.797999,114.24 L291.27202,97.18016 L291.27202,29.7024 L222.95082,0 L222.95082,26.30784 L265.424841,43.21536 L265.424841,97.33248 L248.797999,91.23968 L248.797999,43.71584 L222.95082,51.94112 L222.95082,103.12064 L222.95082,103.12064 Z"/>
+      </svg>
+    </a>
+    <nav class="nav">
+      <a href="#">Новости</a>
+      <a href="#">Истории</a>
+      <a href="#">Разбор</a>
+      <a href="#">Подкасты</a>
+      <a href="#" class="active">Магаз</a>
+      <a href="#">Помощь друга</a>
+    </nav>
+    <div class="top-right">
+      <a href="#">EN</a>
+      <a href="#" class="cart">Корзина · 0</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ WHITE CONTENT CARD ============ -->
+<div class="card-wrap">
+
+  <!-- Article head -->
+  <div class="head">
+    <a href="#" class="rubric">Магаз · книга</a>
+    <h1 class="title">Никита Смагин. «Всем Иран»</h1>
+    <p class="dek">Обновлённое издание главной русскоязычной книги о современном Иране — теперь с главами о войне с Израилем, падении Асада и последнем годе режима аятолл</p>
+  </div>
+
+  <!-- ============ PRODUCT BLOCK ============ -->
+  <section class="product">
+    <!-- Book cover / flipbook -->
+    <div class="book-stage">
+      <div class="flipbook" id="flipbook" onclick="this.classList.toggle('flipped'); const d=document.querySelectorAll('.pg-dots span');d.forEach((x,i)=>x.classList.toggle('on', i===(this.classList.contains('flipped')?1:0)));">
+        <div class="page inner">
+          <p><strong>Глава первая. Тегеран, который не спит</strong></p>
+          <p>Иран — страна, которую на Западе любят представлять монолитом. На самом деле это сложнейшая мозаика из шиитского духовенства, технократов, базарной буржуазии, недовольной молодёжи и силовиков.</p>
+          <p>В этой книге я попробую показать Иран таким, каким его вижу — после шести лет жизни в Тегеране, сотен интервью и тысяч километров по стране…</p>
+        </div>
+        <div class="page cover">
+          <div class="label">NIKITA SMAGIN</div>
+          <div>
+            <div class="b-title">ВСЕМ<br/>ИРАН</div>
+            <div class="b-sub">обновлённое издание</div>
+          </div>
+          <div class="publisher">МАГАЗ · 2026</div>
+        </div>
+      </div>
+      <div class="flip-hint">
+        Кликните по обложке, чтобы полистать
+        <span class="pg-dots"><span class="on"></span><span></span></span>
+      </div>
+    </div>
+
+    <!-- Product info -->
+    <div class="product-info">
+      <div class="p-author"><a href="#">Никита Смагин</a></div>
+      <h2 class="p-title">«Всем Иран»</h2>
+      <p class="p-dek">Как устроена страна, которую боятся и не понимают</p>
+
+      <!-- Amazon-style format tabs -->
+      <div class="formats" id="formats">
+        <div class="fmt active" data-fmt="paper" data-price="€25">
+          <div class="f-name">Бумажная</div>
+          <div class="f-price">€25</div>
+        </div>
+        <div class="fmt" data-fmt="epub" data-price="€9">
+          <div class="f-name">EPUB</div>
+          <div class="f-price">€9</div>
+        </div>
+        <div class="fmt" data-fmt="audio" data-price="€12">
+          <div class="f-name">Аудиокнига</div>
+          <div class="f-price">€12</div>
+        </div>
+      </div>
+
+      <div class="price-big" id="priceBig">€25</div>
+
+      <div class="buy-row">
+        <a href="#" class="btn btn-primary">В корзину</a>
+        <a href="#" class="btn">Купить в один клик</a>
+      </div>
+
+      <div class="delivery-note" id="deliveryNote">
+        В наличии. Доставка по миру 7–14 дней.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BODY CONTENT ============ -->
+  <div class="body">
+    <p>Эту книгу Никита Смагин писал шесть лет — и дважды успевал переписать её целиком. Первая версия вышла до войны в Газе, вторая — до того, как рухнул режим Асада. Третья, которую вы держите в руках, учитывает всё, что случилось в регионе к началу 2026 года.</p>
+
+    <div class="section-head">О чём эта книга</div>
+    <h2 class="section-h">Иран без клише — страна, где всё устроено сложнее, чем кажется из новостей</h2>
+    <p>Это не учебник и не страноведческий справочник. Смагин рассказывает об Иране через людей: духовенство, базар, силовики, студенты, женщины, которые вышли на улицы в 2022-м. Политическая система, экономика санкций, ядерная программа — всё это есть, но подано через биографии и разговоры.</p>
+    <p>Новое издание — не косметическая правка. Примерно треть текста переписана: добавлены главы о войне с Израилем, о судьбе «оси сопротивления», о том, как режим пережил самый тяжёлый год за сорок лет.</p>
+
+    <div class="section-head">Для кого</div>
+    <h2 class="section-h">Для тех, кто устал от новостей про «мулл с ракетами»</h2>
+    <p>Книга написана для читателя без специальной подготовки, но не упрощает. Если вы следили за Ираном по заголовкам и хотели понять, что стоит за ними — это ваш случай. Если вы занимаетесь Ближним Востоком профессионально — здесь найдутся свежие интервью и факты, которых нет в англоязычной прессе.</p>
+    <p>Отдельно её стоит читать тем, кто пытается понять Россию через сравнение: параллели между двумя авторитарными режимами, оказавшимися в международной изоляции, — один из сквозных сюжетов книги.</p>
+
+    <div class="section-head">История из книги</div>
+    <div class="pullquote">
+      В пятницу вечером в северном Тегеране мы сидели на крыше, и Мехди, инженер из Sharif University, наливал мне домашнее вино — в стране, где за это положены плети. «Знаешь, — сказал он, глядя на горы Эльбурс, — самое страшное не санкции и не режим. Самое страшное — что я не помню, когда в последний раз чего-то ждал от будущего». Через полгода Мехди уехал в Канаду. Ещё через год — вернулся.
+    </div>
+  </div>
+
+  <!-- ============ RELATED MEDUZA ============ -->
+  <section class="related">
+    <div class="related-head">Материалы «Медузы»</div>
+    <h3 class="related-title">Ещё про Иран и про эту книгу — на сайте</h3>
+    <div class="mlist">
+      <a href="#" class="mitem">
+        <div class="thumb" style="background-image: linear-gradient(135deg,#0a2340,#2767a8);"></div>
+        <div>
+          <div class="m-kicker">Интервью</div>
+          <h4>«Иран — это не то, что вы думаете». Никита Смагин — о новом издании книги и войне на Ближнем Востоке</h4>
+          <div class="meta">3 недели назад · 18 мин чтения</div>
+        </div>
+      </a>
+      <a href="#" class="mitem">
+        <div class="thumb" style="background-image: linear-gradient(135deg,#2a2a2a,#6b6b6b);"></div>
+        <div>
+          <div class="m-kicker">Разбор</div>
+          <h4>Что на самом деле произошло между Ираном и Израилем в 2025 году</h4>
+          <div class="meta">2 месяца назад · 14 мин чтения</div>
+        </div>
+      </a>
+      <a href="#" class="mitem">
+        <div class="thumb" style="background-image: linear-gradient(135deg,#b88b59,#e0b88a);"></div>
+        <div>
+          <div class="m-kicker">Отрывок</div>
+          <h4>Как устроен базар в Тегеране и почему он до сих пор главный политический институт Ирана</h4>
+          <div class="meta">1 месяц назад · 9 мин чтения</div>
+        </div>
+      </a>
+      <a href="#" class="mitem">
+        <div class="thumb" style="background-image: linear-gradient(135deg,#15416f,#c4ff3c);"></div>
+        <div>
+          <div class="m-kicker">Подкаст</div>
+          <h4>«Что случилось». Никита Смагин — о том, переживёт ли режим аятолл 2026 год</h4>
+          <div class="meta">2 недели назад · 42 мин</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ BUY BLOCK #2 ============ -->
+  <div class="buy-again">
+    <div>
+      <h3>Понравилось? Купите книгу — поддержите «Медузу»</h3>
+      <p>Все доходы от «Магаза» идут в редакцию. Каждая покупка помогает нам работать.</p>
+    </div>
+    <div class="btn-row">
+      <a href="#" class="btn btn-primary">В корзину · €25</a>
+      <a href="#" class="btn">Купить в один клик</a>
+    </div>
+  </div>
+
+  <!-- ============ BUNDLES ============ -->
+  <section class="section">
+    <div class="section-title-row">
+      <div class="sk">Купить дешевле</div>
+      <h2>Наборы с «Всем Иран»</h2>
+      <p class="sub">Экономия до 25% при покупке в комплекте</p>
+    </div>
+    <div class="bundles">
+      <div class="bundle">
+        <div class="covers">
+          <div class="mini-cover" style="background:linear-gradient(135deg,#0a2340,#2767a8);">ВСЕМ ИРАН</div>
+          <div class="mini-cover" style="background:linear-gradient(135deg,#6b2020,#c81e28);">ВОЙНА И НАКАЗАНИЕ</div>
+        </div>
+        <h3>Ближний Восток и Россия</h3>
+        <p>«Всем Иран» + «Война и наказание» Михаила Зыгаря. Два сюжета о странах, бросивших вызов миру.</p>
+        <div class="bprice">
+          <span class="new">€42</span>
+          <span class="old">€52</span>
+          <span class="save">−20%</span>
+        </div>
+        <a href="#" class="btn btn-sm">В корзину</a>
+      </div>
+
+      <div class="bundle">
+        <div class="covers">
+          <div class="mini-cover" style="background:linear-gradient(135deg,#0a2340,#2767a8);">ВСЕМ ИРАН</div>
+          <div class="mini-cover" style="background:linear-gradient(135deg,#1a5c3a,#3fa66f);">ВСЕ СВОБОДНЫ</div>
+          <div class="mini-cover" style="background:linear-gradient(135deg,#4a2c6b,#8a5cc2);">РУССКИЙ МИРАЖ</div>
+        </div>
+        <h3>Режимы в изоляции</h3>
+        <p>Три книги о том, как устроены авторитарные режимы — иранский и российский — под санкциями.</p>
+        <div class="bprice">
+          <span class="new">€59</span>
+          <span class="old">€78</span>
+          <span class="save">−25%</span>
+        </div>
+        <a href="#" class="btn btn-sm">В корзину</a>
+      </div>
+
+      <div class="bundle">
+        <div class="covers">
+          <div class="mini-cover" style="background:linear-gradient(135deg,#0a2340,#2767a8);">ВСЕМ ИРАН</div>
+          <div class="mini-cover" style="background:linear-gradient(135deg,#0a2340,#2767a8); opacity:.55;">EPUB</div>
+        </div>
+        <h3>Бумага + EPUB</h3>
+        <p>Бумажная книга с собой в дорогу и электронная — чтобы читать в телефоне.</p>
+        <div class="bprice">
+          <span class="new">€29</span>
+          <span class="old">€34</span>
+          <span class="save">−15%</span>
+        </div>
+        <a href="#" class="btn btn-sm">В корзину</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OTHER BOOKS ============ -->
+  <section class="section">
+    <div class="section-title-row">
+      <div class="sk">Магаз</div>
+      <h2>Другие книги</h2>
+      <p class="sub">Что ещё читают те, кто выбрал «Всем Иран»</p>
+    </div>
+    <div class="books-grid">
+      <a href="#" class="book-card">
+        <div class="bc-cover" style="background:linear-gradient(135deg,#6b2020,#c81e28);">ВОЙНА И НАКАЗАНИЕ</div>
+        <h4>Война и наказание</h4>
+        <div class="bc-author">Михаил Зыгарь</div>
+        <div class="bc-price">€27</div>
+      </a>
+      <a href="#" class="book-card">
+        <div class="bc-cover" style="background:linear-gradient(135deg,#1a5c3a,#3fa66f);">RIOT DAYS</div>
+        <h4>Riot Days</h4>
+        <div class="bc-author">Мария Алёхина</div>
+        <div class="bc-price">€22</div>
+      </a>
+      <a href="#" class="book-card">
+        <div class="bc-cover" style="background:linear-gradient(135deg,#4a2c6b,#8a5cc2);">Я УМЕЮ ПАДАТЬ</div>
+        <h4>Я умею падать</h4>
+        <div class="bc-author">Наталья Крупенина</div>
+        <div class="bc-price">€18</div>
+      </a>
+      <a href="#" class="book-card">
+        <div class="bc-cover" style="background:linear-gradient(135deg,#2c2c2c,#666);">СИТИ 90-х</div>
+        <h4>Сити девяностых</h4>
+        <div class="bc-author">Александр Горбачёв</div>
+        <div class="bc-price">€24</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ IMPRINT / OUTPUT DATA ============ -->
+  <section class="imprint">
+    <div class="imprint-head">Выходные данные</div>
+    <dl class="imprint-dl">
+      <dt>Автор</dt><dd>Никита Смагин</dd>
+      <dt>Название</dt><dd>Всем Иран</dd>
+      <dt>Издательство</dt><dd>Магаз (Meduza), 2026</dd>
+      <dt>Издание</dt><dd>Второе, обновлённое и дополненное</dd>
+      <dt>Объём</dt><dd>290 страниц</dd>
+      <dt>Форматы</dt><dd>Мягкая обложка · EPUB · Аудиокнига</dd>
+      <dt>Размер</dt><dd>145 × 215 мм</dd>
+      <dt>Вес</dt><dd>495 г</dd>
+      <dt>Язык</dt><dd>Русский</dd>
+      <dt>ISBN</dt><dd>978-9934-9360-8-1</dd>
+      <dt>Аудиоверсия</dt><dd>12 ч 40 мин, читает автор</dd>
+    </dl>
+  </section>
+
+  <div class="bottom-space"></div>
+</div><!-- /.card-wrap -->
+
+<footer>
+  <div>© Meduza · Магаз — все доходы идут в редакцию</div>
+  <div>
+    <a href="#">Доставка</a> · <a href="#">FAQ</a> · <a href="#">Политика данных</a> · <a href="#">Контакты</a>
+  </div>
+</footer>
+
+<script>
+  // Format picker
+  const fmts = document.querySelectorAll('#formats .fmt');
+  const priceBig = document.getElementById('priceBig');
+  const deliveryNote = document.getElementById('deliveryNote');
+  fmts.forEach(f => f.addEventListener('click', () => {
+    fmts.forEach(x => x.classList.remove('active'));
+    f.classList.add('active');
+    priceBig.textContent = f.dataset.price;
+    const fmt = f.dataset.fmt;
+    if (fmt === 'paper') deliveryNote.textContent = 'В наличии. Доставка по миру 7–14 дней.';
+    else if (fmt === 'epub') deliveryNote.textContent = 'Мгновенная доставка — EPUB на почту, без DRM.';
+    else deliveryNote.textContent = 'Стриминг и скачивание сразу после оплаты.';
+  }));
+</script>
+
+</body>
+</html>

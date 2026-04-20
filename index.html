@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meduza — Новости</title>
+<meta name="description" content="Meduza — независимое международное русскоязычное издание" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg: #000000;
+    --card-bg: #ffffff;
+    --ink: #000000;
+    --ink-2: #2a2a2a;
+    --muted: #6b6b6b;
+    --muted-2: #999;
+    --line: #e5e5e5;
+    --rubric: #b88b59;
+    --lime: #c4ff3c;
+    --lime-dark: #a8dd22;
+    --soft: #f2efe9;
+    --sans: 'Inter', 'Proxima Nova', Arial, sans-serif;
+    --serif: 'Source Serif 4', 'PF Regal', Georgia, serif;
+    --content-max: 1335px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--serif);
+    color: var(--ink);
+    background: var(--page-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* Top strip — dark */
+  .top-strip { background: #000; color: #fff; font-family: var(--sans); }
+  .top-strip-inner {
+    max-width: var(--content-max); margin: 0 auto;
+    padding: 18px 40px 14px;
+    display: flex; align-items: center; gap: 36px;
+  }
+  .logo svg { height: 28px; width: auto; fill: #fff; display: block; }
+  .nav { display: flex; gap: 22px; flex: 1; }
+  .nav a { color: #fff; font-size: 14px; font-weight: 600; }
+  .nav a.active { color: var(--lime); }
+  .nav a:hover { color: var(--lime); }
+  .top-right { display: flex; gap: 20px; align-items: center; font-size: 14px; font-weight: 600; }
+  .top-right a { color: #fff; }
+  .top-right .cart { color: #000; background: var(--lime); padding: 7px 14px; font-size: 13px; font-weight: 700; }
+
+  /* Feed container */
+  .feed-wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 24px 40px 80px;
+    background: #000;
+  }
+  .feed-head {
+    display: flex; align-items: baseline; gap: 20px; margin-bottom: 22px;
+    font-family: var(--sans);
+  }
+  .feed-head h1 {
+    color: #fff; font-size: 14px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; margin: 0;
+  }
+  .feed-head .time { color: #888; font-size: 13px; }
+
+  /* Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .grid .big { grid-column: span 2; grid-row: span 2; }
+
+  /* Card */
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition: transform .2s ease;
+  }
+  .card:hover { transform: translateY(-3px); }
+  .card .cimg {
+    aspect-ratio: 16/10;
+    background-size: cover; background-position: center;
+    background-color: #222;
+  }
+  .card.big .cimg { aspect-ratio: 16/9; }
+  .card .cbody {
+    padding: 18px 20px 22px;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .card .ckicker {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    color: var(--rubric); text-transform: uppercase; letter-spacing: .04em;
+    margin-bottom: 10px;
+  }
+  .card h2 {
+    font-family: var(--sans); font-weight: 700;
+    font-size: 18px; line-height: 24px;
+    margin: 0 0 10px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .card.big h2 { font-size: 24px; line-height: 30px; }
+  .card .cexcerpt {
+    font-family: var(--serif);
+    font-size: 15px; line-height: 22px;
+    color: var(--ink-2); margin: 0 0 14px;
+    flex: 1;
+  }
+  .card.big .cexcerpt { font-size: 17px; line-height: 26px; }
+  .card .ctime {
+    font-family: var(--sans); font-size: 12px; color: var(--muted-2);
+    margin-top: auto;
+  }
+
+  /* ===== BOOK CARD (the special one) ===== */
+  .card.book {
+    background: linear-gradient(165deg, #f7f3eb 0%, #ebe3d2 100%);
+  }
+  .card.book .cimg-book {
+    padding: 28px 20px 16px;
+    display: flex; justify-content: center; align-items: flex-end;
+    aspect-ratio: 16/10;
+    background: transparent;
+    position: relative;
+  }
+  .card.book.big .cimg-book { aspect-ratio: 16/9; padding: 36px 24px 20px; }
+  .card.book .book-cover {
+    height: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(155deg, #0a2340 0%, #15416f 55%, #2767a8 100%);
+    color: #fff;
+    padding: 14px 12px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 16px 34px rgba(0,0,0,.28), 0 3px 8px rgba(0,0,0,.08);
+    transform: rotate(-2deg);
+    position: relative;
+    font-family: var(--sans);
+    border-radius: 2px;
+  }
+  .card.book .book-cover::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 25% 15%, rgba(255,210,90,.22), transparent 55%);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .card.book .book-cover .bl { font-size: 8px; font-weight: 700; letter-spacing: .14em; opacity: .75; }
+  .card.book .book-cover .bt {
+    font-weight: 800; font-size: 20px; line-height: .95; letter-spacing: -0.02em;
+  }
+  .card.book.big .book-cover .bt { font-size: 28px; }
+  .card.book .book-cover .bs {
+    font-family: var(--serif); font-style: italic; font-size: 9px; opacity: .9; margin-top: 4px;
+  }
+  .card.book .book-cover .bp { font-size: 7px; letter-spacing: .2em; opacity: .6; }
+
+  .card.book .ckicker {
+    color: var(--rubric);
+  }
+  .card.book .book-meta {
+    font-family: var(--sans); font-size: 12px; color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .card.book .price-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin-top: 12px; padding-top: 14px;
+    border-top: 1px solid rgba(0,0,0,.08);
+  }
+  .card.book .bprice {
+    font-family: var(--sans); font-weight: 800; font-size: 22px; letter-spacing: -0.01em;
+  }
+  .card.book .bprice .frm {
+    font-size: 11px; font-weight: 600; color: var(--muted); margin-left: 6px; letter-spacing: 0;
+  }
+  .card.book .bcart {
+    font-family: var(--sans); font-weight: 700; font-size: 13px;
+    background: var(--lime); color: var(--ink);
+    padding: 10px 16px; border: none; cursor: pointer;
+    border-radius: 999px;
+    transition: background .15s;
+  }
+  .card.book .bcart:hover { background: var(--lime-dark); }
+
+  /* Footer */
+  footer {
+    max-width: var(--content-max); margin: 0 auto;
+    padding: 32px 40px;
+    color: #aaa; font-family: var(--sans); font-size: 13px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  footer a { color: #aaa; }
+  footer a:hover { color: var(--lime); }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .top-strip-inner { padding: 14px 20px; }
+    .nav { display: none; }
+    .feed-wrap { padding: 20px 16px 60px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid .big { grid-column: span 2; grid-row: auto; }
+    .card h2 { font-size: 16px; line-height: 21px; }
+    .card .cexcerpt { font-size: 14px; line-height: 20px; }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .grid .big { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <a href="#" class="logo" aria-label="Meduza">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 544 115" aria-hidden="true">
+        <path d="M59.1008614,49.65632 L59.1008614,106.01472 L84.9480411,114.24 L84.9480411,49.65632 L101.574882,49.65632 L101.574882,106.01472 L127.270909,114.24 L144.048902,91.392 L127.422062,91.392 L127.422062,35.7952 L101.726035,26.80832 L84.9480411,46.60992 L84.9480411,35.7952 L59.2520145,26.80832 L42.4740206,46.60992 L42.4740206,35.7952 L16.7779939,26.80832 L0,49.65632 L16.6268408,49.65632 L16.6268408,106.01472 L42.4740206,114.24 L42.4740206,49.65632 L59.1008614,49.65632 L59.1008614,49.65632 Z M336.61795,91.392 L336.61795,35.0336 L310.770769,26.80832 L310.770769,105.25312 L336.466796,114.24 L353.24479,94.4384 L353.24479,105.25312 L378.940817,114.24 L395.71881,91.392 L379.091969,91.392 L379.091969,35.0336 L353.24479,26.80832 L353.24479,91.392 L336.61795,91.392 L336.61795,91.392 Z M527.373159,38.08 L502.130592,26.80832 L472.202278,41.1264 L502.130592,52.39808 L461.016949,72.352 L461.016949,104.94848 L486.86413,114.24 L502.130592,94.28608 L502.130592,105.25312 L527.977771,114.24 L544,91.23968 L527.373159,91.23968 L527.373159,38.08 L527.373159,38.08 Z M177.453737,114.24 L207.079744,102.35904 L177.453737,91.23968 L177.453737,75.24608 L216.300083,56.3584 L194.231731,26.80832 L151.606557,47.37152 L151.606557,103.12064 L177.453737,114.24 L177.453737,114.24 Z M455.424284,89.56416 L423.984441,79.968 L453.459295,42.19264 L416.577937,26.80832 L397.230341,51.48416 L428.821339,61.23264 L398.741873,98.85568 L436.076687,114.24 L455.424284,89.56416 L455.424284,89.56416 Z M486.86413,91.392 L486.86413,68.84864 L502.130592,61.53728 L502.130592,91.392 L486.86413,91.392 L486.86413,91.392 Z M177.453737,41.58336 L190.452904,59.55712 L177.453737,65.80224 L177.453737,41.58336 L177.453737,41.58336 Z M222.95082,103.12064 L248.797999,114.24 L291.27202,97.18016 L291.27202,29.7024 L222.95082,0 L222.95082,26.30784 L265.424841,43.21536 L265.424841,97.33248 L248.797999,91.23968 L248.797999,43.71584 L222.95082,51.94112 L222.95082,103.12064 L222.95082,103.12064 Z"/>
+      </svg>
+    </a>
+    <nav class="nav">
+      <a href="#" class="active">Новости</a>
+      <a href="#">Истории</a>
+      <a href="#">Разбор</a>
+      <a href="#">Подкасты</a>
+      <a href="#">Магаз</a>
+      <a href="#">Помощь друга</a>
+    </nav>
+    <div class="top-right">
+      <a href="#">EN</a>
+      <a href="#" class="cart">Корзина · 0</a>
+    </div>
+  </div>
+</div>
+
+<div class="feed-wrap">
+  <div class="feed-head">
+    <h1>Главное</h1>
+    <span class="time">20 апреля 2026, понедельник</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- BIG lead -->
+    <a href="#" class="card big">
+      <div class="cimg" style="background-image: linear-gradient(135deg,#0a2340 0%,#15416f 55%,#2767a8 100%);"></div>
+      <div class="cbody">
+        <div class="ckicker">Новости</div>
+        <h2>Перемирие между Ираном и США подходит к концу, а мирного соглашения все нет. Ормузский пролив снова закрыт</h2>
+        <p class="cexcerpt">В Дохе ждут объявления о новом раунде переговоров, но источники в делегациях говорят, что стороны снова разошлись по ключевому вопросу — ядерным центрифугам</p>
+        <div class="ctime">2 часа назад</div>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="card">
+      <div class="cimg" style="background-image: linear-gradient(135deg,#2a2a2a,#6b6b6b);"></div>
+      <div class="cbody">
+        <div class="ckicker">Истории</div>
+        <h2>Мессенджер Telega не только читает переписку пользователей, но и может превратить айфон в «кирпич»</h2>
+        <p class="cexcerpt">Почему это происходит — никто точно не знает. Сами разработчики предполагают, что подверглись «пиар-атаке»</p>
+        <div class="ctime">3 часа назад</div>
+      </div>
+    </a>
+
+    <!-- ========= BOOK CARD (MAGAZ) ========= -->
+    <a href="vsem-iran.html" class="card book">
+      <div class="cimg-book">
+        <div class="book-cover">
+          <div class="bl">NIKITA SMAGIN</div>
+          <div>
+            <div class="bt">ВСЕМ<br/>ИРАН</div>
+            <div class="bs">обновлённое издание</div>
+          </div>
+          <div class="bp">МАГАЗ · 2026</div>
+        </div>
+      </div>
+      <div class="cbody">
+        <div class="ckicker">Магаз · книга</div>
+        <h2>Никита Смагин. «Всем Иран»</h2>
+        <p class="cexcerpt">Главная русскоязычная книга о современном Иране. Новое издание — с главами о войне с Израилем, падении Асада и последнем годе режима аятолл</p>
+        <div class="book-meta">290 стр. · бумага / EPUB / аудио</div>
+        <div class="price-row">
+          <div class="bprice">€25<span class="frm">от</span></div>
+          <button class="bcart" onclick="event.preventDefault(); event.stopPropagation(); alert('Добавлено в корзину');">В корзину</button>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="card">
+      <div class="cimg" style="background-image: linear-gradient(135deg,#4a2c6b,#8a5cc2);"></div>
+      <div class="cbody">
+        <div class="ckicker">Разбор</div>
+        <h2>Как устроен базар в Тегеране и почему он до сих пор главный политический институт Ирана</h2>
+        <p class="cexcerpt">Отрывок из новой книги Никиты Смагина — о том, как торговцы и муллы делят власть в современном Иране</p>
+        <div class="ctime">4 часа назад</div>
+      </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="card">
+      <div class="cimg" style="background-image: linear-gradient(135deg,#1a5c3a,#3fa66f);"></div>
+      <div class="cbody">
+        <div class="ckicker">Новости</div>
+        <h2>Суд в Москве арестовал имущество ещё восьми оппозиционных журналистов</h2>
+        <p class="cexcerpt">Среди них — авторы «Медузы», находящиеся за пределами России</p>
+        <div class="ctime">5 часов назад</div>
+      </div>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="card">
+      <div class="cimg" style="background-image: linear-gradient(135deg,#b88b59,#e0b88a);"></div>
+      <div class="cbody">
+        <div class="ckicker">Подкасты</div>
+        <h2>«Что случилось». Никита Смагин — о том, переживёт ли режим аятолл 2026 год</h2>
+        <p class="cexcerpt">Как война с Израилем изменила внутреннюю политику Ирана — и почему санкции больше не работают так, как раньше</p>
+        <div class="ctime">6 часов назад · 42 мин</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div>© Meduza · Независимое международное русскоязычное издание</div>
+  <div><a href="#">О нас</a> · <a href="#">Магаз</a> · <a href="#">Помощь</a> · <a href="#">Контакты</a></div>
+</footer>
+
+</body>
+</html>
